@@ -31,6 +31,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # 開発環境用DB
   gem 'sqlite3', '~> 1.4'
+  gem 'rspec-rails'
 end
 
 group :development do
