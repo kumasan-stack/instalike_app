@@ -32,6 +32,8 @@ group :development, :test do
   # 開発環境用DB
   gem 'sqlite3', '~> 1.4'
   gem 'rspec-rails'
+  # RSpec高速化
+  gem 'spring-commands-rspec'
 end
 
 group :development do
