@@ -1,0 +1,10 @@
+<% provide(:title, "Sign up") %>
+<h1>Users#new</h1>
+<%= form_with(model: @user, local: true) do |f|%>
+  <%= render "shared/error_messages" %>
+  <%= f.text_field     :name,                  placeholder: "Name" %>
+  <%= f.email_field    :email,                 placeholder: "Email" %>
+  <%= f.password_field :password,              placeholder: "Password" %>
+  <%= f.password_field :password_confirmation, placeholder: "Confirmation" %>
+  <%= f.submit "Create my account" %>
+<% end %>

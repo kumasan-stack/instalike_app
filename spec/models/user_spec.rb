@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "Validation" do
-    let(:user) { User.new(name: "Example User", email: "user@example.com",
-                          password: "hogehoge", password_confirmation: "hogehoge") }
+    let(:user) { FactoryBot.build("valid_user") }
     
     context "Valid Case" do
       example "Standard data" do
