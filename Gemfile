@@ -34,6 +34,8 @@ group :development, :test do
   gem 'rspec-rails'
   # RSpec高速化
   gem 'spring-commands-rspec'
+  # テストデータ登録
+  gem "factory_bot_rails"
 end
 
 group :development do
