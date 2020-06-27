@@ -1,2 +1,10 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<h1>Instagram</h1>
+<% if logged_in? %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+<% else %>
+  <%= form_with(url: root_path, scope: :session, local: true) do |f|%>
+    <%= f.email_field    :email,    placeholder: "Email" %>
+    <%= f.password_field :password, placeholder: "Password" %>
+    <%= f.submit "ログイン" %>
+  <% end %>
+<% end %>
