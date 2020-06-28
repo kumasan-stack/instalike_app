@@ -10,16 +10,16 @@ RSpec.describe "StaticPages", type: :request do
       assert_select "title", "#{base_title}"
     end
 
-    example "help page" do
-      get help_url
+    example "terms page" do
+      get terms_url
       expect(response).to have_http_status(:success)
       assert_select "title", "利用規約 | #{base_title}"
     end
 
-    example "about page" do
-      get about_url
+    example "policy page" do
+      get policy_url
       expect(response).to have_http_status(:success)
-      assert_select "title", "About | #{base_title}"
+      assert_select "title", "プライバシーポリシー | #{base_title}"
     end
 
     example "contact page" do
