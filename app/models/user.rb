@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :validatable
   attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name,       presence: true, length: { maximum: 50 }
@@ -6,7 +10,6 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email,      presence: true, length: { maximum: 255 },
             format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  has_secure_password
   validates :password,   presence: true, length: { minimum: 8, maximum: 50 }
   validates :site_url,                   length: { maximum: 255 }
   validates :profile,                    length: { maximum: 300 }

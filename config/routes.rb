@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root   "static_pages#home"
   get    "/terms",   to: "static_pages#terms"
   get    "/policy",  to: "static_pages#policy"
@@ -6,5 +7,4 @@ Rails.application.routes.draw do
   get    "/signup",  to: "users#new"
   post   "/",        to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
-  resources :users
 end
