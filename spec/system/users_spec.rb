@@ -2,41 +2,78 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   feature "Sign up" do
-    let(:valid_user)   { FactoryBot.build("valid_user") }
-    let(:invalid_user) { FactoryBot.build("invalid_user") }
+    context "by valid user" do
+      let(:user) { FactoryBot.build("valid_user") }
 
-    scenario "Success" do
-      visit 'users/new'
-      fill_in 'user_name',                  with: valid_user.name
-      fill_in 'user_user_name',             with: valid_user.user_name
-      fill_in 'user_email',                 with: valid_user.email
-      fill_in 'user_password',              with: valid_user.password
-      fill_in 'user_password_confirmation', with: valid_user.password_confirmation
-      expect do
-        click_button 'Create my account'
-      end.to change(User, :count)
-      expect(find(".alert").text).to have_content "Welcome to Instagram"
+      before do
+        visit 'users/new'
+        fill_in 'user_name',                  with: user.name
+        fill_in 'user_user_name',             with: user.user_name
+        fill_in 'user_email',                 with: user.email
+        fill_in 'user_password',              with: user.password
+        fill_in 'user_password_confirmation', with: user.password_confirmation
+      end
+
+      scenario "User count is increase and success message is displayed" do
+        expect{ click_button 'Create my account' }.to change(User, :count)
+        expect(page).to have_content "Welcome to Instagram"
+      end
     end
 
-    scenario "Failed" do
-      visit 'users/new'
-      fill_in 'user_name',                  with: invalid_user.name
-      fill_in 'user_user_name',             with: invalid_user.user_name
-      fill_in 'user_email',                 with: invalid_user.email
-      fill_in 'user_password',              with: invalid_user.password
-      fill_in 'user_password_confirmation', with: invalid_user.password_confirmation
-      expect do
-        click_button 'Create my account'
-      end.to_not change(User, :count)
-      expect(find(".alert").text).to have_content "The form contains 5 errors"
+    context "by invalid_user" do
+      let(:user) { FactoryBot.build("invalid_user") }
+
+      before do
+        visit 'users/new'
+        fill_in 'user_name',                  with: user.name
+        fill_in 'user_user_name',             with: user.user_name
+        fill_in 'user_email',                 with: user.email
+        fill_in 'user_password',              with: user.password
+        fill_in 'user_password_confirmation', with: user.password_confirmation
+      end
+
+      scenario "User count is same as before and error message is displayed" do
+        expect{ click_button 'Create my account' }.to_not change(User, :count)
+        expect(page).to have_content "The form contains 5 errors"
+      end
     end
   end
 
   feature "Login" do
+    let(:user){ FactoryBot.create("valid_user") }
 
-  end
+    context "by valid_user" do
+      before do
+        visit '/'
+        fill_in 'session_email',    with: user.email
+        fill_in 'session_password', with: user.password
+      end
 
-  feature "Logout" do
+      let(:flash_message) { "Login succeeded" }
 
+      scenario "push" do
+        click_button "ログイン"
+        expect(page).to have_content flash_message
+        visit '/'
+        expect(page).to_not have_content flash_message
+      end
+    end
+
+    context "by invalid_user" do
+      before do
+        visit '/'
+        fill_in 'session_email',    with: ""
+        fill_in 'session_password', with: "foo"
+      end
+
+      let(:flash_message) { "Invalid email/password combination" }
+
+      scenario "push" do
+        click_button "ログイン"
+        expect(page).to have_content flash_message
+        visit '/'
+        expect(page).to_not have_content flash_message
+      end
+    end
   end
 end
