@@ -5,7 +5,7 @@ RSpec.describe "Users", type: :request do
 
   describe "GET #new" do
     before do
-      get signup_url
+      get new_user_registration_url
     end
 
     it "is successful" do

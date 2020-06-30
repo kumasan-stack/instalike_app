@@ -7,7 +7,7 @@
       <%= f.text_field :user_name,    placeholder: "ユーザー名" %>
       <%= f.text_field :email,        placeholder: "メールアドレス" %>
       <%= f.text_field :phone_number, placeholder: "電話番号" %>
-      <%= f.text_field :sex,          placeholder: "性別" %>
+      <%= f.select :sex, [["男性", "男性"], ["女性", "女性"], ["その他", "その他"]], include_blank: "性別" %>
       <%= f.text_field :site_url,     placeholder: "Webサイト" %>
       <%= f.text_field :profile,      placeholder: "自己紹介" %>
     <% else %>

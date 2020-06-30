@@ -62,12 +62,12 @@ RSpec.describe User, type: :model do
 
       context "password" do
         it "is blank" do
-          user.password = user.password_confirmation = " " * 8
+          user.password = user.password_confirmation = " " * 6
           is_expected.not_to be_valid
         end
 
         it "is too short" do
-          user.password = user.password_confirmation = "a" * 7
+          user.password = user.password_confirmation = "a" * 5
           is_expected.not_to be_valid
         end
 
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
         end
 
         example "Too long phone_number" do
-          user.phone_number = "0" * 15 
+          user.phone_number = "0000-1111-2222"
           is_expected.not_to be_valid
         end
       end

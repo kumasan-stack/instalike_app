@@ -69,4 +69,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.update_without_current_password(params)
       end
     end
+
+    def after_sign_up_path_for(resource)
+      user_path(current_user)
+    end
 end
