@@ -1,0 +1,19 @@
+  <%= form_with model: resource, url: registration_path(resource_name),
+                id: "edit_#{resource_name}", class: "edit_#{resource_name}",
+                local: true do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+    <% if request.path == edit_user_registration_path %>
+      <%= f.text_field :name,         placeholder: "名前" %>
+      <%= f.text_field :user_name,    placeholder: "ユーザー名" %>
+      <%= f.text_field :email,        placeholder: "メールアドレス" %>
+      <%= f.text_field :phone_number, placeholder: "電話番号" %>
+      <%= f.text_field :sex,          placeholder: "性別" %>
+      <%= f.text_field :site_url,     placeholder: "Webサイト" %>
+      <%= f.text_field :profile,      placeholder: "自己紹介" %>
+    <% else %>
+      <%= f.password_field :current_password,      placeholder: "現在のパスワード" %>
+      <%= f.password_field :password,              placeholder: "変更後のパスワード" %>
+      <%= f.password_field :password_confirmation, placeholder: "パスワード確認" %>
+    <% end %>
+    <%= f.submit "Update" %>
+  <% end %>
