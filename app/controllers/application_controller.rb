@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       # 新規登録
       devise_parameter_sanitizer.permit(:sign_up,
-          keys: [:name, :user_name, :email, :password, :password_confirmation])
+          keys: [:name, :user_name, :email, :password, :password_confirmation, :provider, :uid])
       # 編集
       devise_parameter_sanitizer.permit(:account_update,
           keys: [:name, :user_name, :email, :phone_number, :sex,
