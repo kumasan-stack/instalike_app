@@ -29,6 +29,15 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem "devise"
 gem 'omniauth'
 gem 'omniauth-facebook'
+# 投稿画像の検証
+gem 'active_storage_validations', '0.8.2'
+
+# 画像処理
+gem 'image_processing',           '1.9.3'
+gem 'mini_magick',                '4.9.5'
+
+# クラウドストレージ
+gem 'aws-sdk-s3',              '1.46.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
