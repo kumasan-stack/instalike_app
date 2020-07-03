@@ -81,9 +81,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.9.1)
-      devise (>= 4.7.1)
-    devise-i18n-views (0.3.7)
     diff-lcs (1.4.2)
     erubi (1.9.0)
     factory_bot (4.10.0)
@@ -266,8 +263,6 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise
-  devise-i18n
-  devise-i18n-views
   factory_bot_rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
