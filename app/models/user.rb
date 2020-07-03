@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   devise :database_authenticatable, :registerable,
           :rememberable, :validatable,:omniauthable
   before_save { email.downcase! }
@@ -10,7 +11,7 @@ class User < ApplicationRecord
   validates :password,   presence: true, length: { in: 6..50 },
             allow_nil: true
   validates :site_url,                   length: { maximum: 255 }
-  validates :profile,                    length: { maximum: 300 }
+  validates :profile,                    length: { maximum: 255 }
   validates :phone_number,               length: { maximum: 13 }
 
   def update_without_current_password(params, *options)
@@ -33,5 +34,9 @@ class User < ApplicationRecord
       )
     end
     user
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 end

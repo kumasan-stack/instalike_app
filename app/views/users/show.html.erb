@@ -3,6 +3,11 @@
 <ul>
   <li><%= @user.name %></li>
   <li><%= @user.email %></li>
-  <li><%= @user.uid %></li>
-  <li><%= @user.provider %></li>
 </ul>
+
+<% if @user.microposts.any? %>
+  <h3>Microposts (<%= @user.microposts.count %>)</h3>
+  <ol class="microposts">
+    <%= render @microposts %>
+  </ol>
+<% end %>

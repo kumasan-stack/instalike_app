@@ -1,0 +1,5 @@
+<%= render 'shared/user_info' %>
+<%= render 'shared/micropost_form' %>
+<h3>Micropost Feed</h3>
+<%= render 'shared/feed' %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   get    "/terms",          to: "static_pages#terms"
   get    "/policy",         to: "static_pages#policy"
   get    "/contact",        to: "static_pages#contact"
-  resources :users, only: [:index, :show]
+  resources :users,      only: [:index, :show]
+  resources :microposts, only: [:create, :destroy]
 end

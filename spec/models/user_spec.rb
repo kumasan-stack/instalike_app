@@ -84,7 +84,7 @@ RSpec.describe User, type: :model do
         end
 
         example "Too long profile" do
-          user.profile = "a" * 301
+          user.profile = "a" * 256
           is_expected.not_to be_valid
         end
 
