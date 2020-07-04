@@ -4,7 +4,8 @@
   <li><%= @user.name %></li>
   <li><%= @user.email %></li>
 </ul>
-
+<%= render 'shared/stats' %>
+<%= render 'follow_form' if user_signed_in? %>
 <% if @user.microposts.any? %>
   <h3>Microposts (<%= @user.microposts.count %>)</h3>
   <ol class="microposts">
