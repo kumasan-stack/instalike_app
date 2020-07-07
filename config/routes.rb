@@ -8,9 +8,8 @@ Rails.application.routes.draw do
     get    'edit/password', to: 'devise/registrations#edit', as: :edit_password_user_registration
   end
   root   "static_pages#home"
-  get    "/terms",          to: "static_pages#terms"
-  get    "/policy",         to: "static_pages#policy"
-  get    "/contact",        to: "static_pages#contact"
+  get    "terms",          to: "static_pages#terms"
+  get    "policy",         to: "static_pages#policy"
   resources :users do
     member do
       get :following, :followers
