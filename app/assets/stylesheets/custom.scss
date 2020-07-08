@@ -313,3 +313,34 @@ span.image {
 .btn-width-fit {
   width: 100%;
 }
+
+#user_remember_me {
+  margin-left: 0;
+  width: auto;
+}
+
+.user-info-box {
+  margin-bottom: 3em;
+  h1 {
+    text-align: left;
+    margin-bottom: 0.2em;
+  }
+  img {
+    margin-right: 3em;
+  }
+}
+
+.login-form {
+  border: 1px solid $gray-lighter;
+  padding: 1em 2em;
+  margin-top: 1em;
+  p {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+.dividing {
+  background-color: rgb(192, 192, 192);
+  top: .75em;
+}

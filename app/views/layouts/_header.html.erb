@@ -1,18 +1,24 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
     <nav>
-      <%= link_to "Instagram", root_path, id: "logo" %>
-      <form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="text" class="form-control header-search" placeholder="検索">
-				</div>
-			</form>
-      <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-          <li><%= link_to "My page", current_user %></li>
-          <li><%= link_to "通知", "#" %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-      </ul>
+      <div class="col-md-4">
+        <%= link_to "Instagram", root_path, id: "logo" %>
+      </div>
+      <div class="col-md-4">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control header-search" placeholder="検索">
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <ul class="nav navbar-nav navbar-right collapse navbar-collapse"
+            id="bs-example-navbar-collapse-1">
+            <li><%= link_to "My page", current_user %></li>
+            <li><%= link_to "通知", "#" %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show, :following, :followers]
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.all
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def index
