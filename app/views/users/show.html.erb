@@ -1,14 +1,28 @@
 <% provide(:title, @user.name) %>
-<h1>Users#show</h1>
-<ul>
-  <li><%= @user.name %></li>
-  <li><%= @user.email %></li>
-</ul>
-<%= render 'shared/stats' %>
-<%= render 'follow_form' if user_signed_in? %>
-<% if @user.microposts.any? %>
-  <h3>Microposts (<%= @user.microposts.count %>)</h3>
-  <ol class="microposts">
-    <%= render @microposts %>
-  </ol>
-<% end %>
+<% @col_grid = 4 %>
+<div class="fixed-top">
+  <section>
+    <h1>
+      <%= gravatar_for @user %>
+      <%= @user.name %>
+      <span><%= pluralize(current_user.microposts.count, "micropost") %></span>
+    </h1>
+  </section>
+  <section class="stats">
+    <%= render 'shared/stats' %>
+  </section>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'follow_form' %>
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <div class="row">
+          <%= render @microposts %>
+        </div>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+  </div>
+</div>
