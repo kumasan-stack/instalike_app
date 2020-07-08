@@ -1,8 +1,10 @@
-<div class="col-md-<%= @col_grid %>">
+<div class="col-md-<%= @micropost_settings[:col_grid] %>">
   <li id="micropost-<%= micropost.id %>">
-    <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+    <% if @micropost_settings[:display_username] %>
+      <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+    <% end %>
     <span class="content">
-      <%= image_tag micropost.display_square_image(side_length: 300) %>
+      <%= image_tag micropost.display_square_image(side_length: @micropost_settings[:img_size]) %>
       <%= micropost.content %>
     </span>
     <span class="timestamp">

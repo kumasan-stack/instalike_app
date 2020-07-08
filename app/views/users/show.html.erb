@@ -1,22 +1,18 @@
 <% provide(:title, @user.name) %>
-<% @col_grid = 4 %>
-<div class="fixed-top">
-  <section>
-    <h1>
-      <%= gravatar_for @user %>
-      <%= @user.name %>
-      <span><%= pluralize(current_user.microposts.count, "micropost") %></span>
-    </h1>
-  </section>
-  <section class="stats">
+<% @micropost_settings = { col_grid: 4, img_size: 300, display_username: false } %>
+<div class="row user-info-box">
+  <div class="col-md-10 col-md-offset-1">
+    <%= gravatar_for @user, size: 200 %>
+    <h1><%= @user.name %></h1>
     <%= render 'shared/stats' %>
-  </section>
+    <h3><%= @user.profile %></h3>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-12">
     <%= render 'follow_form' %>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <h3>過去の投稿 (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <div class="row">
           <%= render @microposts %>
