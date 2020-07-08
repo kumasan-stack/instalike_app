@@ -1,5 +1,6 @@
+<h1>Instagram</h1>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-4 col-md-offset-6">
     <%= form_with url: user_session, scope: :user,
                   id: "new_user", class: "new_user", local: true do |f| %>
       <%= f.email_field    :email,    placeholder: "Email" %>
@@ -12,6 +13,7 @@
     <% end %>
     <p>または</p>
     <p><%= link_to "新規登録", new_user_registration_path %></p>
-    <p><%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path %></p>
+    <p><span><%= image_tag("f_logo_RGB-Blue_144.png", :size => '18x18', alt: "facebook-icon") %></span>
+              <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "facebook-login" %></p>
   </div>
 </div>

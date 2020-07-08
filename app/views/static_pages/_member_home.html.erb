@@ -1,6 +1,20 @@
-<%= render 'shared/user_info' %>
-<%= render 'shared/stats' %>
-<%= render 'shared/micropost_form' %>
-<h3>Micropost Feed</h3>
-<%= render 'shared/feed' %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% @col_grid = 12 %>
+<div class="row">
+  <div class="col-md-8">
+    <h3>Micropost Feed</h3>
+    <%= render 'shared/feed' %>
+  </div>
+  <aside class="col-md-4">
+    <div>
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </div>
+  </aside>
+</div>
