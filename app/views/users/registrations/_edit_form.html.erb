@@ -1,22 +1,10 @@
   <%= form_with model: @user, url: user_registration_path,
                 id: "edit_user", class: "edit_user", local: true do |f| %>
     <%= render "shared/error_messages", object: f.object %>
-    <% unless request.path == edit_password_user_registration_path %>
-      <div class="gravatar_edit">
-        <%= gravatar_for @user, size: 120 %>
-        <a href="https://gravatar.com/emails" target="_blank">change</a>
-      </div>
-      <%= f.text_field :name,         placeholder: "名前" %>
-      <%= f.text_field :user_name,    placeholder: "ユーザー名" %>
-      <%= f.text_field :email,        placeholder: "メールアドレス" %>
-      <%= f.text_field :phone_number, placeholder: "電話番号" %>
-      <%= f.select :sex, [["男性", "男性"], ["女性", "女性"], ["その他", "その他"]], include_blank: "性別" %>
-      <%= f.text_field :site_url,     placeholder: "Webサイト" %>
-      <%= f.text_field :profile,      placeholder: "自己紹介" %>
+    <% if session[:forwarding_path] == edit_user_registration_path %>
+      <%= render "edit_profile_form",  f: f %>
     <% else %>
-      <%= f.password_field :current_password,      placeholder: "現在のパスワード" %>
-      <%= f.password_field :password,              placeholder: "変更後のパスワード" %>
-      <%= f.password_field :password_confirmation, placeholder: "パスワード確認" %>
+      <%= render "edit_password_form", f: f %>
     <% end %>
     <%= f.submit "更新" %>
   <% end %>
