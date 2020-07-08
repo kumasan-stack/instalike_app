@@ -6,4 +6,6 @@
       <%= render 'follow' %>
     <% end %>
   </div>
+<% else %>
+  <%= link_to "プロフィール編集", edit_user_registration_path, class: "btn btn-primary btn-width-fit" %>
 <% end %>
