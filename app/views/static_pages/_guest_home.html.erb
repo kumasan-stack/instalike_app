@@ -7,7 +7,7 @@
       </ul>
     </div>
   </div>
-  <div class="col-md-4 col-md-offset-2">
+  <div class="col-md-5 col-md-offset-1">
     <div class="login-form">
       <h1>Instagram</h1>
       <%= form_with url: user_session, scope: :user,
@@ -36,7 +36,7 @@
 
 <script type="text/javascript">
   $(function(){
-    var loopSpan = 3000;
+    var loopSpan = 4000;
     $('.welcome-img').each(function(){
       var i = 0;
       $('.welcome-img .img-0').css({opacity: 0});
@@ -46,7 +46,7 @@
         $('.welcome-img .img-0').animate({opacity: (i + 1) % 2},loopSpan,'linear');
         $('.welcome-img .img-1').animate({opacity: (i + 0) % 2},loopSpan,'linear');
         i = (i + 1) % 2;
-        setTimeout(function(){opacitySwitch();},loopSpan + 2000);
+        setTimeout(function(){opacitySwitch();},loopSpan + 3000);
       };
     });
   });
