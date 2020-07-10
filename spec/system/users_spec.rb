@@ -16,7 +16,7 @@ RSpec.describe 'Users', type: :system do
 
       scenario "User count is increase and success message is displayed" do
         expect{ click_button 'Create my account' }.to change(User, :count)
-        expect(page).to have_content "アカウント登録が完了しました。"
+        expect(page).to have_content "Welcome to Instagram."
       end
     end
 
@@ -34,7 +34,7 @@ RSpec.describe 'Users', type: :system do
 
       scenario "User count is same as before and error message is displayed" do
         expect{ click_button 'Create my account' }.to_not change(User, :count)
-        expect(page).to have_content "エラーが発生したため ユーザ は保存されませんでした。"
+        expect(page).to have_content "The form contains 5 errors."
       end
     end
   end
