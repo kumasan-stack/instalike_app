@@ -16,7 +16,7 @@ RSpec.describe 'Resistrations', type: :system do
 
         # ユーザー登録（DB登録成功、リダイレクト成功、flash表示の確認)
         expect{ click_button 'Create my account' }.to change(User, :count)
-        expect(page.title).to eq "#{user.name} | InstalikeApp"
+        expect(page).to have_title "#{user.name} | InstalikeApp"
         expect(page).to have_selector ".alert-success", text: "Welcome to Instagram."
         
         #プロフィール編集(編集可能な全項目変更後、値の確認)
@@ -38,7 +38,7 @@ RSpec.describe 'Resistrations', type: :system do
         expect(changed_user.site_url).to     eq "https://test.com"
         expect(changed_user.profile).to      eq "test中です"
         expect(page).to have_selector ".alert-success", text: "Your account has been updated successfully."
-        expect(page.title).to eq "#{changed_user.name} | InstalikeApp"
+        expect(page).to have_title "#{changed_user.name} | InstalikeApp"
 
         # パスワード編集(パスワード変更後、flashの確認)
         click_on 'プロフィール編集'
@@ -48,7 +48,7 @@ RSpec.describe 'Resistrations', type: :system do
         fill_in 'user_password_confirmation', with: "change"
         click_button '更新'
         expect(page).to have_selector ".alert-success", text: "Your account has been updated successfully."
-        expect(page.title).to eq "#{changed_user.name} | InstalikeApp"
+        expect(page).to have_title "#{changed_user.name} | InstalikeApp"
 
         # ユーザー削除(アカウント削除ボタン、確認ダイアログOKプッシュ後にユーザー数が減少することの確認)
         click_on 'プロフィール編集'
@@ -72,7 +72,7 @@ RSpec.describe 'Resistrations', type: :system do
         # ユーザー登録失敗
         expect{ click_button 'Create my account' }.to_not change(User, :count)
         expect(page).to have_selector ".alert-danger", text: "The form contains 5 errors."
-        expect(page.title).to eq "ユーザー登録 | InstalikeApp"
+        expect(page).to have_title "ユーザー登録 | InstalikeApp"
         expect(page).to have_field "user_email", with: "invalid@cojp"
       end
     end

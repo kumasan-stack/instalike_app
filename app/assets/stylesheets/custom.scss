@@ -340,20 +340,28 @@ span.image {
   }
 }
 
-.dividing {
-  background-color: rgb(192, 192, 192);
-  top: .75em;
-}
-
-.welcome-img {
-  position:relative;
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+.welcome-img img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 @media screen and (max-width:1000px) { 
-  .welcome-img { display:none;}
+  .welcome-img { display:none; }
 }
+
+.devide {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  div {
+    width: 33%;
+  }
+  .line{
+    background-color: rgb(192, 192, 192);
+  }
+}
+

@@ -19,9 +19,11 @@
         <%= f.submit "ログイン" %>
       <% end %>
       <div class="row">
-        <div class="col-md-4 dividing"></div>
-        <div class="col-md-4"><p>または</p></div>
-        <div class="col-md-4 dividing"></div>
+        <div class="devide">
+          <div class="col-md-4 line"></div>
+          <div class="col-md-4 text"><p>または</p></div>
+          <div class="col-md-4 line"></div>
+        </div>
       </div>
       <p><span><%= image_tag("f_logo_RGB-Blue_144.png", :size => '18x18', alt: "facebook-icon") %></span>
                 <%= link_to "Facebookでログイン", user_facebook_omniauth_authorize_path, class: "facebook-login" %></p>
