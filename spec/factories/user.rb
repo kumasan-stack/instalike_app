@@ -1,8 +1,12 @@
 FactoryBot.define do
-  factory "valid_user", class: User do
-    name                  { "Sample User" }
-    user_name             { "Sampling" }
-    email                 { "sample@example.com" }
+  sequence :mail_numbering do |i|
+    "sample#{i}@example.com"
+  end
+
+  factory :user do
+    name                  { "Valid User" }
+    user_name             { "ValidTest" }
+    email                 { "valid@example.com" }
     password              { "password" }
     password_confirmation { "password" }
     site_url              { "https://hoge.co.jp" }
@@ -11,15 +15,11 @@ FactoryBot.define do
     profile               { "テスト頑張ります" }
   end
 
-  factory "invalid_user", class: User do
-    name                  { "  " }
-    user_name             { "  " }
-    email                 { "user@invalid" }
-    password              { "foo" }
-    password_confirmation { "bar" }
-    site_url              { "a" * 256 }
-    phone_number          { "0000-1111-2222" }
-    sex                   { "ABC" }
-    profile               { "a" * 301 }
+  factory :sample_user, class: User do
+    name                  { "Sample User" }
+    user_name             { "Sampling" }
+    email                 { generate :mail_numbering }
+    password              { "password" }
+    password_confirmation { "password" }
   end
 end

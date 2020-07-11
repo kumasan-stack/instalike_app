@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users', type: :system do
   feature "Sign up" do
     context "by valid user" do
-      let(:user) { FactoryBot.build("valid_user") }
+      let(:user) { FactoryBot.build(:user) }
 
       before do
         visit 'users/signup'
@@ -21,15 +21,13 @@ RSpec.describe 'Users', type: :system do
     end
 
     context "by invalid_user" do
-      let(:user) { FactoryBot.build("invalid_user") }
-
       before do
         visit 'users/signup'
-        fill_in 'user_name',                  with: user.name
-        fill_in 'user_user_name',             with: user.user_name
-        fill_in 'user_email',                 with: user.email
-        fill_in 'user_password',              with: user.password
-        fill_in 'user_password_confirmation', with: user.password_confirmation
+        fill_in 'user_name',                  with: "  "
+        fill_in 'user_user_name',             with: "  "
+        fill_in 'user_email',                 with: "invalid@cojp"
+        fill_in 'user_password',              with: "foo"
+        fill_in 'user_password_confirmation', with: "bar"
       end
 
       scenario "User count is same as before and error message is displayed" do

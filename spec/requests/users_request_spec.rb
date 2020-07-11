@@ -20,8 +20,8 @@ RSpec.describe "Users", type: :request do
   describe "GET #show" do
     context "user exists" do
       before do
-        user = FactoryBot.create("valid_user")
-        get user_url(user)
+        @user = FactoryBot.create(:user)
+        get user_url(@user)
       end
 
       it "is successful" do
@@ -29,7 +29,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "has correct title" do
-        expect(response.body).to include "Sample User | #{base_title}"
+        expect(response.body).to include "#{@user.name} | #{base_title}"
       end
     end
 

@@ -7,8 +7,8 @@ class Micropost < ApplicationRecord
   validates :image,   presence: true,
                       content_type: { in: %w[image/jpeg image/png],
                                       message: "must be a valid image format" },
-                      size:         { less_than: 5.megabytes,
-                                      message: "should be less than 5MB" }
+                      size:         { less_than: 2.megabytes,
+                                      message: "should be less than 2MB" }
 
   # 表示用の正方形リサイズ済み画像を返す
   def display_square_image(side_length: 500)

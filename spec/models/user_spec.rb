@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "Validation" do
-    let(:user) { FactoryBot.build("valid_user") }
+    let(:user) { FactoryBot.build(:user) }
     subject { user }
 
     describe "Valid Case" do

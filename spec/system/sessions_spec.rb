@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Sessions', type: :system do
   feature "Login" do
-    let(:user) { FactoryBot.create("valid_user") }
+    let(:user) { FactoryBot.create(:user) }
 
     context "by valid_user" do
       before do
