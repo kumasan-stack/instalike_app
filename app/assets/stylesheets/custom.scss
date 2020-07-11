@@ -345,9 +345,15 @@ span.image {
   top: .75em;
 }
 
-.welcome-img li {
-  position: absolute;
-  list-style: none;
-  top: 0;
-  left: 0;
+.welcome-img {
+  position:relative;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+@media screen and (max-width:1000px) { 
+  .welcome-img { display:none;}
 }
