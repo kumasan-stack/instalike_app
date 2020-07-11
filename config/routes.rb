@@ -3,7 +3,7 @@ Rails.application.routes.draw do
               controllers: { registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
     post   '/',             to: 'users/sessions#create',     as: :user_session
-    delete 'logout',        to: 'devise/sessions#destroy',   as: :destroy_user_session
+    delete 'logout',        to: 'users/sessions#destroy',    as: :destroy_user_session
     get    'edit/password', to: 'users/registrations#edit',  as: :edit_password_user_registration
   end
   root   "static_pages#home"

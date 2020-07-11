@@ -1,11 +1,12 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
   before_action :store_location, only: [:edit] 
-
-  # POST /resource
+  
+  # GET /users/signup
+  def new
+    super
+  end
+  
+  # POST /users
   def create
     build_resource(sign_up_params)
 
@@ -13,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
+        # flashメッセージを変更
         flash[:success] = "Welcome to Instagram."
         sign_up(resource_name, resource)
         respond_with resource, location: after_sign_up_path_for(resource)
@@ -28,21 +30,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  # GET /resource/edit
+  # GET /users/edit
   def edit
     super
   end
 
+  # PATCH /users
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
-
     resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
     if resource_updated
-      set_flash_message_for_update(resource, prev_unconfirmed_email)
+      # flashメッセージを変更
+      flash[:success] = "Your account has been updated successfully."
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-
+      # リダイレクト (or レンダー)先を変更
       respond_with resource, location: user_path(current_user)
     else
       clean_up_passwords resource
@@ -50,6 +53,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :edit
     end
     session.delete(:forwarding_path)
+  end
+
+  # DELETE /resource
+  def destroy
+    resource.destroy
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    # flashメッセージの変更
+    set_flash_message! :success, :destroyed
+    yield resource if block_given?
+    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   end
 
   protected

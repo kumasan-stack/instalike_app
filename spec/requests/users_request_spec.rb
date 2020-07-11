@@ -16,7 +16,7 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include "ユーザー登録 | #{base_title}"
     end
   end
-
+  
   describe "GET #show" do
     context "user exists" do
       before do
