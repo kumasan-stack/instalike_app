@@ -16,6 +16,16 @@ RSpec.describe 'Sessions', type: :system do
       attach_file "micropost_image", "#{Rails.root}/spec/images/valid_image.jpg"
       fill_in "micropost_content",    with: "test投稿"
       expect{ click_button 'Post' }.to change(Micropost, :count)
+      # お気に入り登録
+      expect do
+        click_button "☆"
+        expect(page).to have_button "★"
+      end.to change(Favorite, :count)
+      # お気に入り解除
+      expect do
+        click_button "★"
+        expect(page).to have_button "☆"
+      end.to change(Favorite, :count)
       # 削除
       first(".timestamp").click_link "delete"
       expect do
@@ -28,13 +38,17 @@ RSpec.describe 'Sessions', type: :system do
       visit "/users/#{user2.id}"
       expect(page).to have_selector "#following", text: "0"
       expect(page).to have_selector "#followers", text: "0"
-      click_button "フォローする"
-      expect(page).to have_selector "#following", text: "0"
-      expect(page).to have_selector "#followers", text: "1"
+      expect do
+        click_button "フォローする"
+        expect(page).to have_selector "#following", text: "0"
+        expect(page).to have_selector "#followers", text: "1"
+      end.to change(Relationship, :count)
       # アンフォロー
-      click_button "フォロー中"
-      expect(page).to have_selector "#following", text: "0"
-      expect(page).to have_selector "#followers", text: "0"
+      expect do
+        click_button "フォロー中"
+        expect(page).to have_selector "#following", text: "0"
+        expect(page).to have_selector "#followers", text: "0"
+      end.to change(Relationship, :count)
       # ログアウト
       click_on "ログアウト"
       expect(page).to have_content "Signed out successfully."

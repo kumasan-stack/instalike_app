@@ -72,4 +72,14 @@ class User < ApplicationRecord
   def add_favorite(micropost)
     favorite_post << micropost
   end
+
+  # 投稿のお気に入りを解除する
+  def remove_favorite(micropost)
+    favorites.find_by(micropost_id: micropost.id).destroy
+  end
+
+  # 現在のユーザーがお気に入り登録してたらtrueを返す
+  def is_favorite?(micropost)
+    favorite_post.include?(micropost)
+  end
 end
