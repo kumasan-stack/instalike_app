@@ -6,6 +6,8 @@ class User < ApplicationRecord
             foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_post, through: :favorites, source: :micropost
   devise :database_authenticatable, :registerable,
           :rememberable, :validatable,:omniauthable
   before_save { email.downcase! }
@@ -62,5 +64,10 @@ class User < ApplicationRecord
   # 現在のユーザーがフォローしてたらtrueを返す
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  # 投稿をお気に入りに入れる
+  def add_favorite(micropost)
+    favorite_post << micropost
   end
 end
