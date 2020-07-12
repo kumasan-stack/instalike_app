@@ -4,4 +4,5 @@
   <% else %>
     <%= render 'microposts/add_favorite', micropost:micropost %>
   <% end %>
+  <p><%= micropost.favorites.count %></p>
 </div>

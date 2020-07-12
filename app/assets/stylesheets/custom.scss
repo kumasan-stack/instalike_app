@@ -366,10 +366,15 @@ span.image {
 }
 
 #favorite_form {
+  display: flex;
   .btn {
     font-size: 2em;
     color: gold;
     background-color: unset;
-    width: auto;
+  }
+  p {
+    font-size: 1.5em;
+    margin-top: 0.4em;
+    margin-bottom: 0;
   }
 }
