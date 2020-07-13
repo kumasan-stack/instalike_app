@@ -16,7 +16,21 @@ RSpec.describe "Users", type: :request do
       expect(response.body).to include "ユーザー登録 | #{base_title}"
     end
   end
-  
+
+  describe "GET #index" do
+    before do
+      get users_url
+    end
+
+    it "is successful" do
+      expect(response).to have_http_status(:success)
+    end
+
+    it "has correct title" do
+      expect(response.body).to include "All users | #{base_title}"
+    end
+  end
+
   describe "GET #show" do
     context "user exists" do
       before do
