@@ -77,6 +77,20 @@ p {
   }
 }
 
+.header-search {
+  margin-bottom: auto;
+}
+
+.header-user {
+  span {
+    position: relative;
+    display: block;
+    padding: 8px 15px;
+    color: white;
+    font-size: 1.5em;
+  }
+}
+
 /* footer */
 
 footer {
@@ -98,8 +112,11 @@ footer {
     list-style: none;
     li {
       float: left;
-      margin-left: 15px;
+      margin-right: 10px;
     }
+  }
+  .navbar-right {
+    margin-right: 100px;
   }
 }
 @media (max-width: 800px) {
@@ -304,10 +321,6 @@ span.image {
   input {
     border: 0;
   }
-}
-
-.header-search {
-  margin-bottom: auto;
 }
 
 .btn-width-fit {
