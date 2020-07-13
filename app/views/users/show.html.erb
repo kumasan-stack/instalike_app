@@ -1,5 +1,4 @@
 <% provide(:title, @user.name) %>
-<% @micropost_settings = { col_grid: 4, img_size: 300, display_username: false } %>
 <div class="row user-info-box">
   <div class="col-md-10 col-md-offset-1">
     <%= gravatar_for @user, size: 200 %>

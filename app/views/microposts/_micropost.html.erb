@@ -1,28 +1,5 @@
-<div class="col-md-<%= @micropost_settings[:col_grid] %>">
-  <li id="micropost-<%= micropost.id %>">
-    <% if @micropost_settings[:display_username] %>
-      <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-    <% end %>
-    <span class="content">
-      <%= image_tag micropost.display_square_image(side_length: @micropost_settings[:img_size]) %>
-      <%= micropost.content %>
-    </span>
-    <div class="row">
-      <div class="col-md-2 offset-col-md-1">
-        <%= render "microposts/favorite_form", micropost:micropost %>
-      </div>
-      <div class="col-md-6 offset-col-md-3">
-        <span class="timestamp">
-          Posted <%= time_ago_in_words(micropost.created_at) %> ago.
-          <% if current_user == micropost.user %>
-            <%= link_to "delete", micropost, method: :delete,
-                                  data: { confirm: "本当に削除しますか？" } %>
-          <% end %>
-        </span>
-      </div>
-    </div>
-    <%= render "microposts/comment_form", micropost:micropost %>
-    <% comments = micropost.comments.all %>
-    <%= render comments unless comments.nil? %>
-  </li>
-</div>
+<% if request.path_info == root_path %>
+  <%= render "microposts/main_page_micropost", micropost:micropost %>
+<% else %>
+  <%= render "microposts/user_page_micropost", micropost:micropost %>
+<% end %>
