@@ -1,0 +1,8 @@
+<div id="comment_form">
+  <%= form_with(url: comments_path(micropost), model: micropost.comments.build, local: true) do |f| %>
+    <div class="field">
+      <%= f.text_area :content, placeholder: "コメントを入力" %>
+    </div>
+    <%= f.submit "Send", class: "btn btn-primary" %>
+  <% end %>
+</div>

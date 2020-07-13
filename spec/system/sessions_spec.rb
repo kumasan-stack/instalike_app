@@ -26,11 +26,27 @@ RSpec.describe 'Sessions', type: :system do
         click_button "★"
         expect(page).to have_button "☆"
       end.to change(Favorite, :count)
-      # 削除
-      first(".timestamp").click_link "delete"
+      # コメント投稿
+      fill_in 'comment_content',    with: "テスト中なのです"
+      expect do
+        click_button "Send"
+        expect(page).to have_css "#comment-1"
+      end.to change(Comment, :count)
+      # コメント削除
+      within "#comment-1" do
+        click_link "delete"
+      end
       expect do
         page.accept_confirm "本当に削除しますか？"
         # ブロック内で完了メッセージの確認をすることにより処理完了を待機する
+        expect(page).to have_content "Comment deleted"
+      end.to change(Comment, :count)
+      # 削除
+      within "#micropost-1" do
+        click_link "delete"
+      end
+      expect do
+        page.accept_confirm "本当に削除しますか？"
         expect(page).to have_content "Micropost deleted"
       end.to change(Micropost, :count)
       # フォロー

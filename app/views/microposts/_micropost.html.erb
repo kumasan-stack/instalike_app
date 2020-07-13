@@ -21,5 +21,8 @@
         </span>
       </div>
     </div>
+    <%= render "microposts/comment_form", micropost:micropost %>
+    <% comments = micropost.comments.all %>
+    <%= render comments unless comments.nil? %>
   </li>
 </div>

@@ -9,13 +9,16 @@ Rails.application.routes.draw do
   root   "static_pages#home"
   get    "terms",          to: "static_pages#terms"
   get    "policy",         to: "static_pages#policy"
-  resources :users do
+  resources :users,         only: [:index,  :show] do
     member do
       get :following, :followers
     end
   end
-  resources :users,         only: [:index,  :show]
-  resources :microposts,    only: [:create, :destroy]
+  resources :microposts,    only: [:create, :destroy] do
+    member do
+      resources :comments,  only: [:create, :destroy]
+    end
+  end
   resources :relationships, only: [:create, :destroy]
   resources :favorites,     only: [:create, :destroy]
 end
