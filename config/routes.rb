@@ -7,18 +7,15 @@ Rails.application.routes.draw do
     get    'edit/password', to: 'users/registrations#edit',  as: :edit_password_user_registration
   end
   root   "static_pages#home"
-  get    "terms",          to: "static_pages#terms"
-  get    "policy",         to: "static_pages#policy"
+  get    "terms",           to: "static_pages#terms"
+  get    "policy",          to: "static_pages#policy"
   resources :users,         only: [:index,  :show] do
     member do
       get :following, :followers
     end
   end
-  resources :microposts,    only: [:new, :show, :create, :destroy] do
-    member do
-      resources :comments,  only: [:create, :destroy]
-    end
-  end
+  resources :microposts,    only: [:new, :show, :index, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :favorites,     only: [:create, :destroy]
+  resources :comments,      only: [:create, :destroy]
 end
