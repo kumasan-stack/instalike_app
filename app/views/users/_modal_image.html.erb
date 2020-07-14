@@ -1,0 +1,30 @@
+<div class="modal-wrapper">
+  <div class="modal">
+    <img src="#" id="modal-image">
+    <div class="comment-box"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $('.micropost-image').click(function(){
+      var src =  $(this).attr('src');
+      $('#modal-image').attr('src',src);
+
+      var modal_height = $(window).height() * 0.9;
+      var modal_width = modal_height - 100;
+      
+      $('.modal').css('width', modal_width);
+      $('.modal').css('height', modal_height);
+
+      $('#modal-image').width(modal_width - 50);
+      $('.comment-box').html($('.invisible-comment', $(this).parent()).html());
+
+      $('.modal-wrapper').fadeIn();
+    });
+
+    $('.modal-wrapper').click(function(){
+      $('.modal-wrapper').fadeOut();
+    });
+  });
+</script>

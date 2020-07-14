@@ -20,10 +20,11 @@ RSpec.describe 'Sessions', type: :system do
       fill_in "micropost_content",    with: "test投稿"
       expect do
         click_button 'Post'
-        expect(page).to have_selector "#micropost-1"
+        expect(page).to have_content "Micropost created!"
       end.to change(Micropost, :count)
 
       # お気に入り登録
+      click_link "Instagram"
       expect do
         click_button "☆"
         expect(page).to have_button "★"

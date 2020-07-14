@@ -308,6 +308,11 @@ input {
   }
 }
 
+.micropost-info {
+  text-align: right;
+  margin-right: 1em;
+}
+
 .comments {
   height: 400px;
   overflow-y: scroll;
@@ -414,4 +419,41 @@ span.image {
   form {
     display: inline-block;
   }
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1100;
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #e6ecf0;
+  padding: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  .comments {
+    height: 100px;
+    p {
+      margin: 0 10px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      text-align: left;
+    }
+  }
+}
+
+.invisible-comment {
+  display: none;
 }

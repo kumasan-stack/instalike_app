@@ -1,7 +1,13 @@
 <div class="col-md-4">
   <li id="micropost-<%= micropost.id %>">
-    <span class="content">
-      <%= image_tag micropost.display_square_image(side_length: 300) %>
-    </span>
+    <%= image_tag micropost.display_square_image(side_length: 350), class: "micropost-image" %>
+    <div class="invisible-comment">
+      <% comments = micropost.comments.all %>
+      <div class="comments">
+        <ol>
+          <%= render comments unless comments.nil? %>
+        </ol>
+      </div>
+    </div>
   </li>
 </div>
