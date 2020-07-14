@@ -2,7 +2,7 @@
   <% if current_user.is_favorite?(micropost) %>
     <%= render 'microposts/remove_favorite', micropost:micropost %>
   <% else %>
-    <%= render 'microposts/add_favorite', micropost:micropost %>
+    <%= render 'microposts/add_favorite',    micropost:micropost %>
   <% end %>
   <p><%= micropost.favorites.count %></p>
 </div>
