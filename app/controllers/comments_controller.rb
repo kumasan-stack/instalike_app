@@ -4,12 +4,11 @@ class CommentsController < ApplicationController
 
   def create
     comment = current_user.comments.build(comment_params)
-    comment.micropost_id = params[:id]
     if comment.save
       flash[:success] = "Comment created!"
       redirect_back(fallback_location: root_path)
     else
-      flash[:danger] = comment.errors.full_messages
+      flash.now[:danger] = comment.errors.full_messages
       @feed_items = current_user.feed.paginate(page: params[:page])
       render 'static_pages/home'
     end
@@ -23,7 +22,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:micropost_id, :content)
     end
 
     def correct_user
