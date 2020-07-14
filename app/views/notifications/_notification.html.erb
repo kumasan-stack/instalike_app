@@ -1,0 +1,18 @@
+<% case notification.activity %>
+<% when "Favorite" then %>
+  <% activity_message = "をお気に入りに追加しました" %>
+<% when "Comment" then %>
+  <% activity_message = "にコメントしました" %>
+<% end %>
+
+<li class="<%= notification.activity.downcase %>" id="notification-<%= notification.id %>">
+  <p>
+    <%= link_to notification.active_user.name, notification.active_user %> さんが
+    <%= link_to "写真", notification.micropost %>
+    <%= activity_message %>
+  </p>
+  <div class="timestamp">
+    <span><%= time_ago_in_words(notification.created_at) %> ago.</span>
+    <%= link_to "OK", notification, method: :delete %>
+  </div>
+</li>

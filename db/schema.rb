@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_12_071412) do
+ActiveRecord::Schema.define(version: 2020_07_14_064213) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 2020_07_12_071412) do
     t.index ["content"], name: "index_microposts_on_content"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "micropost_id"
+    t.integer "passive_user_id"
+    t.integer "active_user_id"
+    t.string "activity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["passive_user_id", "created_at"], name: "index_notifications_on_passive_user_id_and_created_at"
   end
 
   create_table "relationships", force: :cascade do |t|

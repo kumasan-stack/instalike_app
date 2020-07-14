@@ -1,4 +1,7 @@
 <%= form_with(model: current_user.favorites.build, remote: false) do |f| %>
-  <div><%= hidden_field_tag :micropost_id, micropost.id %></div>
+  <div><%= f.hidden_field :micropost_id,    :value => micropost.id %></div>
+  <div><%= f.hidden_field :passive_user_id, :value => micropost.user.id %></div>
+  <div><%= f.hidden_field :active_user_id,  :value => current_user.id %></div>
+  <div><%= f.hidden_field :activity,        :value => "Favorite" %></div>
   <%= f.submit "☆", class: "btn" %>
 <% end %>

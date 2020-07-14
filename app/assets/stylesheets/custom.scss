@@ -457,3 +457,31 @@ span.image {
 .invisible-comment {
   display: none;
 }
+
+.notifications {
+  li {
+    color: #404040;
+    border-bottom: solid 2px #dadada;
+    background: whitesmoke;
+    margin-bottom: 5px;
+    line-height: 1.5;
+    padding: 0.5em;
+    list-style-type: none;
+    font-weight: bold;
+  }
+  .favorite {
+    border-left: solid 6px #eb85c0;
+  }
+  .comment {
+    border-left: solid 6px #f5cf52;
+  }
+  p {
+    margin-bottom: auto;
+  }
+  .timestamp {
+    text-align: right;
+    a {
+      margin-left: 0.5em;
+    }
+  }
+}

@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav navbar-right header-user">
           <li><span><%= current_user.name %></span></li>
           <li><%= link_to "My page", current_user %></li>
-          <li><%= link_to "通知", "#" %></li>
+          <li><%= link_to "通知", notifications_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         </ul>
       </div>

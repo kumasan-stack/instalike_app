@@ -1,0 +1,13 @@
+<% provide(:title, "通知一覧") %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h3>通知一覧</h3>
+    <% if @notifications.any? %>
+      <ol class="notifications">
+        <%= render @notifications %>
+      </ol>
+    <% else %>
+      <p>通知はありません</p>
+    <% end %>
+  </div>
+</div>

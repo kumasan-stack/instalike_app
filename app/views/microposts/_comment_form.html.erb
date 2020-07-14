@@ -1,6 +1,9 @@
 <div id="comment_form">
   <%= form_with(model: micropost.comments.build, local: true) do |f| %>
-    <div><%= f.hidden_field :micropost_id, :value => micropost.id %></div>
+    <div><%= f.hidden_field :micropost_id,    :value => micropost.id %></div>
+    <div><%= f.hidden_field :passive_user_id, :value => micropost.user.id %></div>
+    <div><%= f.hidden_field :active_user_id,  :value => current_user.id %></div>
+    <div><%= f.hidden_field :activity,        :value => "Comment" %></div>
     <%= f.text_area :content, placeholder: "コメントを入力" %>
     <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>

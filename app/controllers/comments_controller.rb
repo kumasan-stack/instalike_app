@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user,       only: :destroy
+  before_action :correct_user, only: :destroy
 
   def create
     comment = current_user.comments.build(comment_params)
     if comment.save
       flash[:success] = "Comment created!"
+      Notification.create(notification_params)
       redirect_back(fallback_location: root_path)
     else
       flash.now[:danger] = comment.errors.full_messages
@@ -23,6 +24,10 @@ class CommentsController < ApplicationController
   private
     def comment_params
       params.require(:comment).permit(:micropost_id, :content)
+    end
+
+    def notification_params
+      params.require(:comment).permit(:micropost_id, :passive_user_id, :active_user_id, :activity)
     end
 
     def correct_user
