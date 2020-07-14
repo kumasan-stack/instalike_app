@@ -5,14 +5,13 @@
         <%= link_to "Instagram", root_path, id: "logo" %>
       </div>
       <div class="col-md-3">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control header-search" placeholder="検索">
-          </div>
-        </form>
+        <%= form_with(scope: :search, url: microposts_path, method: :get,
+                      class: "navbar-form navbar-left", local: true) do |f| %>
+          <%= f.text_field :keyword, placeholder: "検索", class: "form-control header-search" %>
+        <% end %>
       </div>
       <div class="col-md-6">
-        <ul class="nav navbar-nav navbar-right collapse navbar-collapse header-user">
+        <ul class="nav navbar-nav navbar-right header-user">
           <li><span><%= current_user.name %></span></li>
           <li><%= link_to "My page", current_user %></li>
           <li><%= link_to "通知", "#" %></li>

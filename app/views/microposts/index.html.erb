@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <h3><%= params[:search][:keyword] %> の検索結果</h3>
+    <% if @search_results.any? %>
+      <ol class="microposts">
+        <%= render @search_results %>
+      </ol>
+    <% else %>
+      <h4>条件に一致する投稿はありませんでした</h4>
+    <% end %>
+  </div>
+</div>

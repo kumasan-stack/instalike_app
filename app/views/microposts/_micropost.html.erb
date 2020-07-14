@@ -1,4 +1,4 @@
-<% if request.path_info == root_path %>
+<% if request.path_info == root_path || request.path_info == microposts_path %>
   <%= render "microposts/main_page_micropost", micropost:micropost %>
 <% else %>
   <%= render "microposts/user_page_micropost", micropost:micropost %>

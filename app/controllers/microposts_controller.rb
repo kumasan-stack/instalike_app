@@ -27,6 +27,10 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def index
+    @search_results = Micropost.where("content LIKE ?", "%#{params[:search][:keyword]}%")
+  end
+
   private
 
     def micropost_params
