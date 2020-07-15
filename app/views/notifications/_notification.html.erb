@@ -1,4 +1,5 @@
 <li class="<%= notification.activity.downcase %>" id="notification-<%= notification.id %>">
+  <%= gravatar_for notification.active_user, size: 50 %>
   <p>
     <%= link_to notification.active_user.name, notification.active_user %> さんが
     <%= link_to "写真", notification.micropost %>
