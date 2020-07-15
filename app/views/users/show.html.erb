@@ -1,21 +1,21 @@
 <% provide(:title, @user.name) %>
-<div class="row user-info-box">
-  <div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1">
+  <div class="row user-info-box">
     <%= gravatar_for @user, size: 150 %>
-    <h1><%= @user.name %></h1>
+    <h1><%= @user.user_name %></h1>
+    <h4><%= @user.name %></h1>
     <%= render 'shared/stats' %>
-    <h3><%= @user.profile %></h3>
+    <h4><%= @user.profile %></h3>
   </div>
 </div>
 
 <%= render 'follow_form' if user_signed_in? %>
-<h3>過去の投稿 (<%= @user.microposts.count %>)</h3>
-<% if @user.microposts.any? %>
-  <ol class="microposts">
-    <%= render @microposts %>
-  </ol>
-  <%= will_paginate @microposts %>
-<% else %>
-  <p>まだ投稿はありません</p>
-<% end %>
+<%= render 'micropost', title: "投稿した写真",
+                    all_posts: @user.microposts,
+               paginate_posts: @my_posts,
+                   param_name: "my_page" %>
+<%= render 'micropost', title: "お気に入りの写真",
+                    all_posts: @user.favorite_posts,
+               paginate_posts: @favorite_posts,
+                   param_name: "favorite_page" %>
 <%= render "modal_image" %>

@@ -1,0 +1,15 @@
+<div class="row">
+  <h3><%= "#{title}(#{all_posts.count})" %></h3>
+  <% if all_posts.any? %>
+    <div class="row">
+      <ol class="microposts">
+        <%= render paginate_posts %>
+      </ol>
+    </div>
+    <%= will_paginate paginate_posts, :param_name => param_name %>
+  <% else %>
+    <div class="notice">
+      <p>まだ<%= title %>がありません</p>
+    </div>
+  <% end %>
+</div>

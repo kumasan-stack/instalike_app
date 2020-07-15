@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:following, :followers]
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
+    @my_posts = @user.microposts.paginate(page: params[:my_page], per_page: 3)
+    @favorite_posts = @user.favorite_posts.paginate(page: params[:favorite_page], per_page: 3)
   end
 
   def index

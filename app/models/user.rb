@@ -11,9 +11,9 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: "Relationship",
                                   foreign_key: "followed_id",
                                     dependent: :destroy
-  has_many :following,     through: :active_relationships,  source: :followed
-  has_many :followers,     through: :passive_relationships, source: :follower
-  has_many :favorite_post, through: :favorites,             source: :micropost
+  has_many :following,      through: :active_relationships,  source: :followed
+  has_many :followers,      through: :passive_relationships, source: :follower
+  has_many :favorite_posts, through: :favorites,             source: :micropost
   devise :database_authenticatable, :registerable,
           :rememberable, :validatable,:omniauthable
   before_save { email.downcase! }
@@ -74,7 +74,7 @@ class User < ApplicationRecord
 
   # 投稿をお気に入りに入れる
   def add_favorite(micropost)
-    favorite_post << micropost
+    favorite_posts << micropost
   end
 
   # 投稿のお気に入りを解除する
@@ -84,6 +84,6 @@ class User < ApplicationRecord
 
   # 現在のユーザーがお気に入り登録してたらtrueを返す
   def is_favorite?(micropost)
-    favorite_post.include?(micropost)
+    favorite_posts.include?(micropost)
   end
 end

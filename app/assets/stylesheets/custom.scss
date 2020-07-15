@@ -181,7 +181,13 @@ aside {
 }
 
 .gravatar_edit {
-  margin-top: 15px;
+  margin: 10px;
+  height: 120px;
+  a {
+    display: inline-block;
+    margin-top: 90px;
+    font-size: 1em;
+  }
 }
 
 .stats {
