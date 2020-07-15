@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :notification do
-    micropost_id 1
-    active_user_id 1
-    activity "MyString"
+    association :micropost
+    passive_user { micropost.user }
+    association :active_user, factory: :sample_user
+    activity "Favorite"
   end
 end
