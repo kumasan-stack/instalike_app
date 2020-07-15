@@ -1,6 +1,6 @@
 <% case request.path_info %>
 <% when root_path, microposts_path %>
-  <%= render "microposts/main_page_micropost", micropost:micropost %>
+  <%= render "microposts/single_micropost", micropost:micropost %>
 <% else %>
-  <%= render "microposts/user_page_micropost", micropost:micropost %>
+  <%= render "microposts/triple_micropost", micropost:micropost %>
 <% end %>
